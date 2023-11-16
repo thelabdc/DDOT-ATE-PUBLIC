@@ -2,6 +2,9 @@
 # Created by https://www.gitignore.io/api/r,latex,python,jupyternotebooks
 # Edit at https://www.gitignore.io/?templates=r,latex,python,jupyternotebooks
 
+### Data folder, which contains sensitive data ###
+data/
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
