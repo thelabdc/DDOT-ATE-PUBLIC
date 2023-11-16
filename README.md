@@ -1,71 +1,65 @@
-# AAA-ProjectDescription
+# DDOT-ATE-PUBLIC
 
 Authors, after copying this template, please
 
-- [ ] Complete the name of `AAA-ProjectDescription` above, where `AAA` is the 
-agency abbreviation, and `ProjectDescription` is a short description of the 
-project in Pascal case.  For example, `DHS-DCFlex`.
-- [ ] Change the name of the `.Rproj` file from `Template.Rproj` to 
-`AAA-ProjectDescription.Rproj`.  Do so with `git mv Template.Rproj AAA-ProjectDescription.Rproj`.
-- [ ] Complete or remove the sections below, as appropriate.
 - [ ] Git-remove the `empty.txt` file in each directory after you commit a file 
 in that directory.  To git-remove the empty file in `/docs/`, e.g., use 
 `git rm docs/empty.txt`.
 - [ ] Delete this block of text that is not part of your project.
 
 
-@authors: [Author1](author.email@dc.gov), [Author2](author2@dc.gov)
+@authors: [Alyssa Huberts](alyssa.huberts@dc.gov), [Nathan Dignazio](nathan.dignazio@dc.gov), [Ryan Moore](ryan.moore@dc.gov)
 
 ## Introduction
 
-This repo contains ...
+This repo contains preliminary code for the project "Can Targeting Messages to High-Risk Drivers Prevent Crashes?" [(Project Page)](https://thelabprojects.dc.gov/high-risk-drivers)
 
 The analysis was pre-registered on the Open Science Framework (OSF) 
-[here](OSF URL).  The final report is [here](link).
+[here](https://osf.io/5pufn/). 
 
 
 #### Requirements:
 
-The primary modules used here for Python are ...
-The primary packages used here for R are ...
-The relevant packages and modules are included at the top of each Python script, 
-R script, and Jupyter notebook.
+For the simulation code, relevant packages are listed at the beginning of the script. They are reproduced here:
+
+```
+library(boxr)
+library(estimatr)
+library(randomizr)
+library(tidyverse)
+library(broom)
+```
 
 ## Organization
 
-The repo is organized in four primary directories:
+Currently, this repo has one primary directory, with plans to include the following subdirectories:
 
 - `code`
-- `data`
-- `docs`
-- `figs`
+  - `01_pre-analysis`
+  - `02_predictive model`
+  - `03_randomization`
+  - `04_evaluation`
 
 Additionally, this repository includes `README`, `.gitignore`, and `.Rproj` 
 files.
 
-## `/code/`
+## `/code/pre-analysis`
 
 This directory includes these files:
-
-- `01-description.py` (short description here)
-- `02-description.R` (short description here)
-
-## `/data/`
-
-Links for the open data sets analyzed are below.
-
-* [Description 1](Link1)
-
-The code below can be used to get these data sets.
-
-```bash
-wget https://  [here]
-```
+ `01_simulated-multiple-comparisons-correction.R`
+- Takes in:
+    - Summary of pre-treatment citations data for the study sample of drivers
+- What it does:
+    - Uses simulation to identify the correct alpha to use as a threshold for significance at the 95% level when correcting for the pre-registered 12-test citation family. 
+- Outputs:
+    - XXXX, the simulated alpha with 20,000 simulations 
 
 ### Sensitive data
 
-Several data sets are are _not_ included in this repository due to the sensitive nature of the data.  They include
+Several data sets are are _not_ included in this repository due to the sensitive nature of the data.  They include:
 
-## `/docs/`
-
-## `/figs/`
+- **citation_summary**: This dataset contains summary information on our four main citation outcomes in the pre-treatment period:
+  -  risky citations at 3 months (November 2022-February 2023): red light citations and speeding > 15 mph above the speed limit 
+  -  risky citations at 12 months (November 2022- February 2023): red light citations and speeding > 15 mph above the speed limit
+  -  total citations at 3 months (February 2022-February 2023)
+  -  total citations at 12 months (February 2022-February 2023) 
