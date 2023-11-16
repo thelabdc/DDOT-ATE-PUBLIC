@@ -46,7 +46,7 @@ files.
 ## `/code/pre-analysis`
 
 This directory includes these files:
- `01_simulated-multiple-comparisons-correction.R`
+ `01_simulated-multiple-comparisons-correction.r`
 - Takes in:
     - Summary of pre-treatment citations data for the study sample of drivers
 - What it does:
