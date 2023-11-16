@@ -23,7 +23,7 @@ The analysis was pre-registered on the Open Science Framework (OSF)
 For the simulation code, relevant packages are listed at the beginning of the script. They are reproduced here:
 
 ```
-library(boxr)
+library(here)
 library(estimatr)
 library(randomizr)
 library(tidyverse)
