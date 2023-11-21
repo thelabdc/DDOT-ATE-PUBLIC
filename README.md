@@ -1,6 +1,6 @@
 # DDOT-ATE-PUBLIC
 
-@authors: [Alyssa Huberts](alyssa.huberts@dc.gov), [Nathan Dignazio](nathan.dignazio@dc.gov), [Ryan T. Moore](ryan.moore2@dc.gov)
+@authors: [Alyssa Huberts](https://thelabprojects.dc.gov/alyssa-huberts), [Nathan Dignazio](https://thelabprojects.dc.gov/nathan-dignazio), [Ryan T. Moore](https://thelabprojects.dc.gov/ryan-moore)
 
 ## Introduction
 
@@ -54,4 +54,4 @@ Several data sets are are _not_ included in this repository due to the sensitive
   -  risky citations at 3 months (November 2022 - February 2023): red light citations and speeding > 15 mph above the speed limit 
   -  risky citations at 12 months (February 2022 - February 2023): red light citations and speeding > 15 mph above the speed limit
   -  total citations at 3 months (November 2022 - February 2023)
-  -  total citations at 12 months (February 2022-February 2023) 
+  -  total citations at 12 months (February 2022 - February 2023) 
