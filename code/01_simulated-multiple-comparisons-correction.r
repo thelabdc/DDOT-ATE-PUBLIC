@@ -13,7 +13,7 @@ library(here)
 ########################################################################################################################################
 
 # Read in the citation data. This is the real (albeit pre-treatment) data
-citation_summary <- read_csv(here(
+citation_summary <- read_csv(here("data/citation_summary_data_for_simulation.csv"))
 
 # Identify the four outcomes we're interested in testing for citations 
 outcomes <- c("total_cites_3mo", "total_cites_12mo", "risky_cites_3mo", "risky_cites_12mo") # Grab our four outcome columns of interest
@@ -60,14 +60,13 @@ cor(citation_summary[,outcomes])
   
     
     # Run the simulation nsim times 
-    nsim <- 10000
-    set.seed(20231030)
+    nsim <- 20000
+    set.seed(23111712)
     # ps_from_sims <- replicate(simulate_significance(simdata = citation_summary),n=nsim)
     # do not overwrite this unless you have the time/bandwidth to run with 10,000 simulations
-    # box_write(as_tibble(ps_from_sims), dir_id = 171715437619, 
-    # file_name = "ps_from_sim.csv")
-    ps_from_sims <- box_read(1349708344065)
-    
+     file_name <- paste("data/ps-from-simulations-", nsim, "-sims.csv", sep = "")
+    # write_csv(as.data.frame(ps_from_sims), here(file_name))
+    ps_from_sims <- read_csv(here(file_name))
     
     # We are trying to set a "threshold" alpha (ie standard to test any individual coefficient against) that leads us to an *overall*
     # type 1 error rate of .05. So for each threshold, we test whether we'd get a type 1 error against it, and then we 
@@ -92,6 +91,6 @@ cor(citation_summary[,outcomes])
       slice(1) |>
       select(threshold)
 
-
+   target_p_value
     
     
