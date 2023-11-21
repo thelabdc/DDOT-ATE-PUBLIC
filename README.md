@@ -1,13 +1,5 @@
 # DDOT-ATE-PUBLIC
 
-Authors, after copying this template, please
-
-- [ ] Git-remove the `empty.txt` file in each directory after you commit a file 
-in that directory.  To git-remove the empty file in `/docs/`, e.g., use 
-`git rm docs/empty.txt`.
-- [ ] Delete this block of text that is not part of your project.
-
-
 @authors: [Alyssa Huberts](alyssa.huberts@dc.gov), [Nathan Dignazio](nathan.dignazio@dc.gov), [Ryan Moore](ryan.moore@dc.gov)
 
 ## Introduction
@@ -52,7 +44,7 @@ This directory includes these files:
 - What it does:
     - Uses simulation to identify the correct alpha to use as a threshold for significance at the 95% level when correcting for the pre-registered 12-test citation family. 
 - Outputs:
-    - XXXX, the simulated alpha with 20,000 simulations 
+    - 0.004704705, the simulated alpha with 20,000 simulations  (Calculated 11/17/2023)
 
 ### Sensitive data
 
@@ -60,6 +52,6 @@ Several data sets are are _not_ included in this repository due to the sensitive
 
 - **citation_summary**: This dataset contains summary information on our four main citation outcomes in the pre-treatment period:
   -  risky citations at 3 months (November 2022-February 2023): red light citations and speeding > 15 mph above the speed limit 
-  -  risky citations at 12 months (November 2022- February 2023): red light citations and speeding > 15 mph above the speed limit
-  -  total citations at 3 months (February 2022-February 2023)
+  -  risky citations at 12 months (February 2022- February 2023): red light citations and speeding > 15 mph above the speed limit
+  -  total citations at 3 months (November 2022-February 2023)
   -  total citations at 12 months (February 2022-February 2023) 
