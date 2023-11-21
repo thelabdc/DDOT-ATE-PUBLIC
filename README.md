@@ -1,6 +1,6 @@
 # DDOT-ATE-PUBLIC
 
-@authors: [Alyssa Huberts](alyssa.huberts@dc.gov), [Nathan Dignazio](nathan.dignazio@dc.gov), [Ryan Moore](ryan.moore@dc.gov)
+@authors: [Alyssa Huberts](alyssa.huberts@dc.gov), [Nathan Dignazio](nathan.dignazio@dc.gov), [Ryan T. Moore](ryan.moore2@dc.gov)
 
 ## Introduction
 
@@ -15,11 +15,11 @@ The analysis was pre-registered on the Open Science Framework (OSF)
 For the simulation code, relevant packages are listed at the beginning of the script. They are reproduced here:
 
 ```
-library(here)
+library(broom)
 library(estimatr)
+library(here)
 library(randomizr)
 library(tidyverse)
-library(broom)
 ```
 
 ## Organization
@@ -44,14 +44,14 @@ This directory includes these files:
 - What it does:
     - Uses simulation to identify the correct alpha to use as a threshold for significance at the 95% level when correcting for the pre-registered 12-test citation family. 
 - Outputs:
-    - 0.004704705, the simulated alpha with 20,000 simulations  (Calculated 11/17/2023)
+    - 0.004704705, the simulated alpha with 20,000 simulations  (Calculated 2023-11-17)
 
 ### Sensitive data
 
 Several data sets are are _not_ included in this repository due to the sensitive nature of the data.  They include:
 
 - **citation_summary**: This dataset contains summary information on our four main citation outcomes in the pre-treatment period:
-  -  risky citations at 3 months (November 2022-February 2023): red light citations and speeding > 15 mph above the speed limit 
-  -  risky citations at 12 months (February 2022- February 2023): red light citations and speeding > 15 mph above the speed limit
-  -  total citations at 3 months (November 2022-February 2023)
+  -  risky citations at 3 months (November 2022 - February 2023): red light citations and speeding > 15 mph above the speed limit 
+  -  risky citations at 12 months (February 2022 - February 2023): red light citations and speeding > 15 mph above the speed limit
+  -  total citations at 3 months (November 2022 - February 2023)
   -  total citations at 12 months (February 2022-February 2023) 
