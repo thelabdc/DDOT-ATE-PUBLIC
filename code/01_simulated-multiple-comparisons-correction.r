@@ -91,6 +91,6 @@ cor(citation_summary[,outcomes])
       slice(1) |>
       select(threshold)
 
-   target_p_value
-    
+   target_p_value  
+    # 0.004704705
     
