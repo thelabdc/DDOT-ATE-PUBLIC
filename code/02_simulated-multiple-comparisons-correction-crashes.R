@@ -17,10 +17,10 @@ box_auth(client_id = config::get("client_id"),
          client_secret =config::get("client_secret"))
 
 # Read in the crash data. This is the real (albeit pre-treatment) data
-vehicle_data_pretreat <- box_read(957420631736)|>
+vehicle_data_pretreat <- box_read(1691997836797)|>
   filter(VEHICLE_TAGNUMBER != ""& VEHICLE_TAGNUMBER !="XXXXXXX") |>
   mutate(plate = trimws(VEHICLE_TAGNUMBER,which = "both"))|>
-  filter(ACCIDENTDATE > as.Date("2020-04-30"))|>
+  filter(ACCIDENTDATE > as.Date("2021-04-28"))|>
   group_by(plate)|> 
   dplyr::summarize(n_crashes = n())
 
@@ -78,7 +78,7 @@ set.seed(24110410)
 ps_from_sims <- replicate(simulate_significance(simdata = crash_data_pretreat),n=nsim)
 # do not overwrite this unless you have the time/bandwidth to run with 10,000 simulations
 file_name <- paste("data/ps-from-simulations-crash-", nsim, "-sims.csv", sep = "")
-#write_csv(as.data.frame(ps_from_sims), here(file_name))
+write_csv(as.data.frame(ps_from_sims), here(file_name))
 ps_from_sims <- read_csv(here(file_name))
 
 # We are trying to set a "threshold" alpha (ie standard to test any individual coefficient against) that leads us to an *overall*
@@ -104,6 +104,6 @@ target_p_value <- thresholds_with_type_I |>
   slice(1) |>
   select(threshold)
 
-target_p_value  #0.0159
+target_p_value  #0.0171
 
 
