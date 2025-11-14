@@ -2,7 +2,7 @@
 # Note that if you want pretreat citation you need to uncomment it in master (it takes a long time to load)
 
 # TABLE 1: SUMMARY OF COVARIATE BALANCE
-trt_assign |>
+ate |>
   filter(match == 0)|>
   mutate(assignment = factor(assignment, levels = c("Control", "Mailer", "Text", "Both")))|>
   group_by(assignment)|> 
@@ -33,9 +33,9 @@ trt_assign |>
             paste(100*round(mean(otherdc),2),"%", sep = ""), 
   ) |>
   as.data.frame()|>
-  write_csv(file = "tables/2024-11/summary/balance_nomatch.csv")
+  write_csv(file = "tables/summary/balance_nomatch.csv")
 
-trt_assign |>
+ate |>
   mutate(assignment = factor(assignment, levels = c("Control", "Mailer", "Text", "Both")))|>
   filter(match == 1)|>
   group_by(assignment)|> 
@@ -66,7 +66,7 @@ trt_assign |>
             paste(100*round(mean(otherdc),2),"%", sep = ""), 
   ) |>
   as.data.frame()|>
-  write_csv(file = "tables/2024-11/summary/balance_match.csv")
+  write_csv(file = "tables/summary/balance_match.csv")
 
 
 
@@ -78,59 +78,62 @@ pretreat_citation_1yr_summary <- pretreat_citation |>
   mutate(
     risky = ifelse(violation %in% c("OVER 25 MPH CONTROL", "OVER 25 MPH NON CONT", 
                                     "SPEED 21-25 OVR LIMT", "PASS REDLIGHT"),1,0)  )|>
-  group_by(plate, ticket_number)|>
+  group_by(plate_rep_id, ticket_rep_id)|>
   slice(1) |>
   ungroup() |>
-  group_by(plate)|>
+  group_by(plate_rep_id)|>
   summarize(n_citations = n(), 
-            n_risky = sum(risky)) 
-pretreat_citation_1yr_summary <- left_join(trt_assign, pretreat_citation_1yr_summary, by = "plate")|>
-  mutate(n_citations = ifelse(is.na(n_citations), 0, n_citations), 
-         n_risky = ifelse(is.na(n_risky), 0,n_risky))
+            n_risky = sum(risky)) |>
+  rename(n_pretreat_citations = n_citations, 
+         n_pretreat_risky = n_risky)
+
+pretreat_citation_1yr_summary <- left_join(ate, pretreat_citation_1yr_summary, by = "plate_rep_id")|>
+  mutate(n_pretreat_citations = ifelse(is.na(n_pretreat_citations), 0, n_pretreat_citations), 
+         n_pretreat_risky = ifelse(is.na(n_pretreat_risky), 0,n_pretreat_risky)) 
 
 pretreat_crash_1yr_summary <- pretreat_crash |>
   clean_names()|>
   filter(accidentdate  > as.Date("2021-04-28") & accidentdate < as.Date("2022-04-28") )|>
-  group_by(complaintnumber, vehicle_tagnumber)|>
+  group_by(complaint_rep_id, plate_rep_id)|>
   slice(1)|>
   ungroup()|>
-  rename(plate = vehicle_tagnumber)|>
-  group_by(plate)|>
-  summarize(n_crashes = n())
+  group_by(plate_rep_id)|>
+  summarize(n_crashes = n())|>
+  rename(n_pretreat_crashes = n_crashes)
 
-pretreat_crash_1yr_summary <- left_join(trt_assign,pretreat_crash_1yr_summary, by = "plate")|>
-  mutate(n_crashes = ifelse(is.na(n_crashes), 0, n_crashes))
+pretreat_crash_1yr_summary <- left_join(ate, pretreat_crash_1yr_summary)|>
+  dplyr::mutate(n_pretreat_crashes = ifelse(is.na(n_pretreat_crashes), 0, n_pretreat_crashes))
 
 pretreat_outcomes <- left_join(pretreat_crash_1yr_summary, pretreat_citation_1yr_summary)
 
 #For pretreatment outcomes summary table 
 pretreat_outcomes |>
-  summarize(mean_crashes = mean(n_crashes), 
-            mean_citation_risky = mean(n_risky), 
-            mean_citations = mean(n_citations))
+  summarize(mean_pretreat_crashes = mean(n_pretreat_crashes), 
+            mean_pretreat_citation_risky = mean(n_pretreat_risky), 
+            mean_pretreat_citations = mean(n_pretreat_citations))
 
 pretreat_outcomes |>
             filter(match ==1)|>
-            summarize(mean_crashes = mean(n_crashes), 
-            mean_citation_risky = mean(n_risky), 
-            mean_citations = mean(n_citations))
+            summarize(mean_pretreat_crashes = mean(n_pretreat_crashes), 
+            mean_pretreat_citation_risky = mean(n_pretreat_risky), 
+            mean_pretreat_citations = mean(n_pretreat_citations))
 
 # By assignment group, for balance table 
 pretreat_outcomes |> 
   filter(match == 0)|>
   group_by(assignment)|>
-  summarize(mean_citations = format(mean(n_citations),nsmall=4),
-            mean_citation_risky = mean(n_risky), 
-            mean_crashes = mean(n_crashes))|>
-  write_csv(file = "tables/2024-11/summary/pretreat_outcome_balance_no_match.csv")
+  summarize(mean_pretreat_citations = format(mean(n_pretreat_citations),nsmall=4),
+            mean_pretreat_citation_risky = mean(n_pretreat_risky), 
+            mean_pretreatcrashes = mean(n_pretreat_crashes))|>
+  write_csv(file = "tables/summary/pretreat_outcome_balance_no_match.csv")
 
 
 pretreat_outcomes |> 
   mutate(assignment = factor(assignment, levels = c("Control", "Mailer", "Text", "Both")))|>
   filter(match == 1)|>
   group_by(assignment)|>
-  summarize(mean_citations = format(round(mean(n_citations),4), nsmall =4),
-            mean_citation_risky = round(mean(n_risky),4), 
-            mean_crashes = round(mean(n_crashes),4))|>
-  write_csv(file = "tables/2024-11/summary/pretreat_outcome_balance_match.csv")
+  summarize(mean_pretreat_citations = format(round(mean(n_pretreat_citations),4), nsmall =4),
+            mean_citation_pretreat_risky = round(mean(n_pretreat_risky),4), 
+            mean_pretreat_crashes = round(mean(n_pretreat_crashes),4))|>
+  write_csv(file = "tables/summary/pretreat_outcome_balance_match.csv")
 

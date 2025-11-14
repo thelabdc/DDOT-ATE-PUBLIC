@@ -13,6 +13,8 @@ library(sandwich)
 
 # read in data 
 ate <- read_csv("data/ate.csv")
+pretreat_citation <- read_csv("data/pretreat_citation.csv")
+pretreat_crash <- read_csv("data/pretreat_crash.csv")
 
 # colors for plots 
 lab_blue     <- "#2B4888"
