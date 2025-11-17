@@ -2,6 +2,7 @@
 # Note that if you want pretreat citation you need to uncomment it in master (it takes a long time to load)
 
 # TABLE 1: SUMMARY OF COVARIATE BALANCE
+# PANEL A: Non-matched sample
 ate |>
   filter(match == 0)|>
   mutate(assignment = factor(assignment, levels = c("Control", "Mailer", "Text", "Both")))|>
@@ -35,6 +36,7 @@ ate |>
   as.data.frame()|>
   write_csv(file = "tables/summary/balance_nomatch.csv")
 
+# Panel B (Matched Sample)
 ate |>
   mutate(assignment = factor(assignment, levels = c("Control", "Mailer", "Text", "Both")))|>
   filter(match == 1)|>
@@ -119,6 +121,7 @@ pretreat_outcomes |>
             mean_pretreat_citations = mean(n_pretreat_citations))
 
 # By assignment group, for balance table 
+# PANEL A (Non-matched sample)
 pretreat_outcomes |> 
   filter(match == 0)|>
   group_by(assignment)|>
@@ -127,7 +130,7 @@ pretreat_outcomes |>
             mean_pretreatcrashes = mean(n_pretreat_crashes))|>
   write_csv(file = "tables/summary/pretreat_outcome_balance_no_match.csv")
 
-
+# PANEL B (Matched sample)
 pretreat_outcomes |> 
   mutate(assignment = factor(assignment, levels = c("Control", "Mailer", "Text", "Both")))|>
   filter(match == 1)|>

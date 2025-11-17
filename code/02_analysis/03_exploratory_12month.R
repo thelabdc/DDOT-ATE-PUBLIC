@@ -116,7 +116,7 @@ run_ate_regressions <- function(subset_condition = "state_ward == 'VA'",
                    caption.above = TRUE
   )
   
-  cat(output, file = paste("tables/2024-10/Het/wholesample_", condition_pretty, ".tex", sep = ""))
+  cat(output, file = paste("tables/het/wholesample_", condition_pretty, ".tex", sep = ""))
   
   
   # Matched sample 
@@ -136,7 +136,7 @@ run_ate_regressions <- function(subset_condition = "state_ward == 'VA'",
                            
                         )
                          
-  cat(output_matched, file = paste("tables/2024-10/Het/matched_sample_", condition_pretty, ".tex", sep = ""))
+  cat(output_matched, file = paste("tables/het/matched_sample_", condition_pretty, ".tex", sep = ""))
   
   # Matched sample 
   output_any <- texreg(c(extracted_K1,  extracted_M1, extracted_L1, extracted_N1, extracted_O1),
@@ -153,7 +153,7 @@ run_ate_regressions <- function(subset_condition = "state_ward == 'VA'",
                        caption.above = TRUE
   )
   
-  cat(output_any, file = paste("tables/2024-10/Het/any_treatment_", condition_pretty, ".tex", sep = ""))
+  cat(output_any, file = paste("tables/het/any_treatment_", condition_pretty, ".tex", sep = ""))
 
   
   return(results_tibble)
@@ -178,12 +178,12 @@ results_low_risk <- run_ate_regressions(subset_condition = "risk_tercile == 'Low
                                    drop_make = TRUE)|>
                                    mutate(sample = "Low risk")
 
-write.csv(results_dc, file = "data/regression_results/results_dc.csv")
-write.csv(results_md, file = "data/regression_results/results_md.csv")
-write.csv(results_va, file = "data/regression_results/results_va.csv")
-write.csv(results_high_risk, file = "data/regression_results/results_high_risk.csv")
-write.csv(results_medium_risk, file = "data/regression_results/results_medium_risk.csv")
-write.csv(results_low_risk, file = "data/regression_results/results_low_risk.csv")
+write.csv(results_dc, file = "tables/het/results_dc.csv")
+write.csv(results_md, file = "tables/het/results_md.csv")
+write.csv(results_va, file = "tables/het/results_va.csv")
+write.csv(results_high_risk, file = "tables/het/results_high_risk.csv")
+write.csv(results_medium_risk, file = "tables/het/results_medium_risk.csv")
+write.csv(results_low_risk, file = "tables/het/results_low_risk.csv")
 
 # -----------------------------------------------------------------------------
 # Box and Whisker Plots 
@@ -236,7 +236,7 @@ results_state_mailer <- bind_rows(results_dc, results_md, results_va)|>
           strip.text = element_text(size = 10))+
     theme(legend.position = "bottom") # Adjust this to control spacing
 )|>
-  ggsave(file = "figs/2024-12/exploratory_state_mailer.png", width= 6.9, height = 5)
+  ggsave(file = "figs/exploratory_state_mailer.png", width= 6.9, height = 5)
 
 # State-Level, Matched sample -------------------------------------------------
 n_va_matched <- nrow(ate[ate$state_ward== "VA" & ate$match==1,])
@@ -286,7 +286,7 @@ results_state_matched <- bind_rows(results_dc, results_md, results_va)|>
           strip.text = element_text(size = 10))+
     theme(legend.position = "bottom") # Adjust this to control spacing
 )|>
-  ggsave(file = "figs/2024-12/exploratory_state_matched.png", width= 6.9, height = 8)
+  ggsave(file = "figs/exploratory_state_matched.png", width= 6.9, height = 8)
 
 # State-Level Any Discount ----------------------------------------------------
 # Bind all state-level results
@@ -337,7 +337,7 @@ results_state_any <- bind_rows(results_dc, results_md, results_va)|>
           legend.text = element_text(size = 10),
           strip.text = element_text(size = 10))+
     theme(legend.position = "bottom")) |>
-  ggsave(file = "figs/2024-12/exploratory_state_any.png", width= 6.9, height = 5)
+  ggsave(file = "figs/exploratory_state_any.png", width= 6.9, height = 5)
 
 ################################################################################
 # Risk Tercile -----------------------------------------------------------------
@@ -386,7 +386,7 @@ results_risk_tercile <- bind_rows(results_high_risk, results_medium_risk, result
           strip.text = element_text(size = 10))+
     theme( legend.position = "bottom")
   )|>
-      ggsave(file = "figs/2024-12/exploratory_risk_tercile_mailer.png", width= 6.9, height = 5)
+      ggsave(file = "figs/exploratory_risk_tercile_mailer.png", width= 6.9, height = 5)
 
 
 # Matched Sample by Risk Tercile ------------------------------------------------
@@ -436,7 +436,7 @@ results_risk_tercile <- bind_rows(results_high_risk, results_medium_risk, result
           strip.text = element_text(size = 10))+
     theme( legend.position = "bottom")
 )|>
-  ggsave(file = "figs/2024-12/exploratory_risk_tercile_match.png", width= 6.9, height = 8)
+  ggsave(file = "figs/exploratory_risk_tercile_match.png", width= 6.9, height = 8)
 
 # Any treatment by Risk Tercile ------------------------------------------------
 n_high_risk_any <- nrow(ate[ate$risk_tercile == "High",])
@@ -482,6 +482,6 @@ results_risk_tercile <- bind_rows(results_high_risk, results_medium_risk, result
           strip.text = element_text(size = 10))+
     theme( legend.position = "bottom")
 )|>
-  ggsave(file = "figs/2024-12/exploratory_risk_tercile_any.png", width= 6.9, height = 5)
+  ggsave(file = "figs/exploratory_risk_tercile_any.png", width= 6.9, height = 5)
 
 

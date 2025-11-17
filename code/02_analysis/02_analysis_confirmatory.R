@@ -1,20 +1,3 @@
-
-ate <- left_join(citations_3mo, citations_12mo[,c("plate", "num_citations_12mo", "riskiest_citations_12mo")], by = "plate")
-ate <- left_join(ate, crash_12mo[,c("plate", "n_crashes")], by = "plate")
-
-# checks 
-# table(ate$num_citations_12mo >= ate$num_citations_3mo) # ALL TRUE
-# table(ate$riskiest_citations_12mo >= ate$riskiest_citations_3mo) # ALL TRUE
-
-ate$mailer <- ifelse(ate$assignment == "Mailer",1,0)
-ate$sms <- ifelse(ate$assignment == "Text",1,0)
-ate$both <- ifelse(ate$assignment == "Both",1,0)
-
-# Eliminate "make" categories of make that are too small to get rid of rank deficiency in interacted design matrix 
-ate <- ate |> group_by(make_cleaned)|> mutate(make_count = n())|>
-  mutate(make_cleaned = ifelse(make_count < 100, "Small Group", make_cleaned))
-ate$make_count <- NULL
-
 # Relevel factors to make them more intuitive in regression tables 
 #ate$risk_tercile <- factor(ate$risk_tercile, levels = c("Low", "Medium", "High"))
 #ate$state_ward <- factor(ate$state_ward, levels = c("DC", "MD", "VA", "Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8"))
@@ -155,7 +138,7 @@ results_tibble <- bind_rows(tidy(A1, conf.level = 1- p_val_simulation_citations)
   filter(term %in% c("any", "mailer", "assignmentMailer", "assignmentText", "assignmentBoth", "(Intercept)"))|>
   mutate(outcome = ifelse(outcome == "n_crashes", "n_crashes_12mo", outcome))
 
-write.csv(results_tibble, file = "data/regression_results/results_all_confirmatory.csv")
+write.csv(results_tibble, file = "tables/regression_results/results_all_confirmatory.csv")
 
 # -----------------------------------------------------------------------------
 # Box and Whisker Plots 
@@ -207,7 +190,7 @@ mean_crash <- round(mean(ate[ate$assignment == "Control",]$n_crashes),2)
      theme(legend.position = "bottom")
      
     )|>
-  ggsave(file = "figs/2024-12/confirmatory_mailer.png", width= 6.9, height = 4)
+  ggsave(file = "figs/confirmatory_mailer.png", width= 6.9, height = 4)
 
 # Main coefficient plot for matched sample (By treatment arm) 
 mean_risky_match <- round(mean(ate[ate$assignment == "Control" & ate$match==1,]$riskiest_citations_12mo),2)
@@ -259,7 +242,7 @@ mean_crash_match <- round(mean(ate[ate$assignment == "Control"& ate$match==1,]$n
     #) 
     theme(legend.position = "bottom")
 )|>
-  ggsave(file = "figs/2024-12/confirmatory_matched.png", width= 6.9, height = 8)
+  ggsave(file = "figs/confirmatory_matched.png", width= 6.9, height = 8)
 
 # -----------------------------------------------------------------------------
 # Regression Tables
@@ -305,7 +288,7 @@ output <- wordreg(c(extracted_A1,   extracted_E1, extracted_B1, extracted_F1, ex
                  custom.note = c("\\item Lin Estimator. Car make and interacted coefficients on covariates omitted from display for brevity.
                              \\item Stars: * < .017 (Simulated crash p-value) ** < .004 (Simulated citation p-value) "),
                  caption.above = TRUE, 
-                 file =  "tables/2024-10/Confirmatory/confirmatory_wholesample.doc"
+                 file =  "tables/regression_results/confirmatory_wholesample.doc"
 )
 
 
@@ -347,5 +330,5 @@ output_matched <- wordreg(c(extracted_C1,  extracted_G1, extracted_D1, extracted
        
                  custom.note = c("\\item Lin Estimator. Car make, intercept and interacted coefficients on covariates omitted from display for brevity.
                              \\item Stars: * < .017 (Simulated crash p-value) ** < .004 (Simulated citation p-value) "),
-                 file = "tables/2024-10/Confirmatory/confirmatory_matched_sample.docx"
+                 file = "tables/regression_results/confirmatory_matched_sample.docx"
 )
