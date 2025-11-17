@@ -3,7 +3,6 @@ library(randomizr)
 library(tidyverse)
 library(broom)
 library(here)
-library(boxr)
 library(janitor)
 ########################################################################################################################################
 # This code 
@@ -13,23 +12,6 @@ library(janitor)
 # Preanalysis plan can be found at https://osf.io/px8ew
 # Uses pre-treatment crash data to generate the relevant p value 
 
-box_auth(client_id = config::get("client_id"),
-         client_secret =config::get("client_secret"))
-
-# Read in the crash data. This is the real (albeit pre-treatment) data
-vehicle_data_pretreat <- box_read(1691997836797)|>
-  filter(VEHICLE_TAGNUMBER != ""& VEHICLE_TAGNUMBER !="XXXXXXX") |>
-  mutate(plate = trimws(VEHICLE_TAGNUMBER,which = "both"))|>
-  filter(ACCIDENTDATE > as.Date("2021-04-28"))|>
-  group_by(plate)|> 
-  dplyr::summarize(n_crashes = n())
-
-  plates_for_simulations <- box_read(1368463861362) |>
-    dplyr::select(plate, risk_score, risk_tercile, state_ward, match, block)
-  
-  crash_data_pretreat <- left_join(plates_for_simulations, vehicle_data_pretreat, by = "plate")|>
-    mutate(n_crashes = ifelse(is.na(n_crashes),0, n_crashes))
-  
 # Identify the four outcomes we're interested in testing for citations 
 outcomes <- c("n_crashes") # Grab our four outcome columns of interest
 
