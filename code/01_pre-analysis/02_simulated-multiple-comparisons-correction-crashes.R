@@ -1,9 +1,3 @@
-library(estimatr)
-library(randomizr)
-library(tidyverse)
-library(broom)
-library(here)
-library(janitor)
 ########################################################################################################################################
 # This code 
 # uses simulation analysis to determine the threshold value against which we should measure levels of statsistical significance for the ATE project 
@@ -21,7 +15,7 @@ outcomes <- c("n_crashes") # Grab our four outcome columns of interest
 # Start by simulating all the permuted treatments and p values 
 
 # Function to simulate treatment and test against threshold
-simulate_significance <- function(simdata = crash_data_pretreat){
+simulate_significance <- function(simdata = preanalysis_crash_data_pretreat){
   # Assign treatment probabilities: Note that the probability is the same within each block, but RA doesn't necessarily know that, so we need to give it the full matrix 
   # block_prob_each must be a matrix with the same number of rows as blocks and the same number of columns as treatment arms.
   block_probs <- tibble("control" = rep(.523,72),

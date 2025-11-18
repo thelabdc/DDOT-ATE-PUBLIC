@@ -12,8 +12,8 @@ library(lubridate)
 library(sandwich)
 
 # Data sources for calculating p-values 
-citation_summary_pretreat <- read_csv("data/citation_summary_pretreat.csv")
-crash_data_pretreat <- read_csv("data/crash_data_pretreat.csv")
+preanalysis_citation_summary_pretreat <- read_csv("data/citation_summary_pretreat.csv")
+preanalysis_crash_data_pretreat <- read_csv("data/crash_data_pretreat.csv")
 
 # Data sources for summary statistics and regression analysis
 ate <- read_csv("data/ate.csv")
@@ -27,7 +27,7 @@ ate <- ate |> group_by(make_cleaned)|> mutate(make_count = n())|>
   mutate(make_cleaned = ifelse(make_count < 100, "Small Group", make_cleaned))
 ate$make_count <- NULL
 
-
+# Pretreat citations and crashes (for summary statistics)
 pretreat_citation <- read_csv("data/pretreat_citation.csv")
 pretreat_crash <- read_csv("data/pretreat_crash.csv")
 

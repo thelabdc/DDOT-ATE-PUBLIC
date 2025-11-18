@@ -12,8 +12,6 @@ library(here)
 # Preanalysis plan can be found at https://osf.io/px8ew
 ########################################################################################################################################
 
-# Read in the citation data. This is the real (albeit pre-treatment) data
-citation_summary_pretreat <- read_csv(here("data/citation_summary_pretreat_data_for_simulation.csv"))
 
 # Identify the four outcomes we're interested in testing for citations 
 outcomes <- c("total_cites_3mo", "total_cites_12mo", "risky_cites_3mo", "risky_cites_12mo") # Grab our four outcome columns of interest
@@ -26,7 +24,7 @@ cor(citation_summary_pretreat[,outcomes])
       # Start by simulating all the permuted treatments and p values 
     
       # Function to simulate treatment and test against threshold
-      simulate_significance <- function(simdata = citation_summary_pretreat){
+      simulate_significance <- function(simdata = preanalysis_citation_summary_pretreat){
       # Assign treatment probabilities: Note that the probability is the same within each block, but RA doesn't necessarily know that, so we need to give it the full matrix 
       # block_prob_each must be a matrix with the same number of rows as blocks and the same number of columns as treatment arms.
       block_probs <- tibble("control" = rep(.523,72),
