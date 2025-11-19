@@ -54,7 +54,7 @@ set.seed(24110410)
 ps_from_sims <- replicate(simulate_significance(simdata = crash_data_pretreat),n=nsim)
 # do not overwrite this unless you have the time/bandwidth to run with 10,000 simulations
 file_name <- paste("data/ps-from-simulations-crash-", nsim, "-sims.csv", sep = "")
-write_csv(as.data.frame(ps_from_sims), here(file_name))
+#write_csv(as.data.frame(ps_from_sims), here(file_name))
 ps_from_sims <- read_csv(here(file_name))
 
 # We are trying to set a "threshold" alpha (ie standard to test any individual coefficient against) that leads us to an *overall*
