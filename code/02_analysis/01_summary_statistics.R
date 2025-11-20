@@ -18,7 +18,8 @@ ate |>
          ward6= ifelse(state_ward == "Ward 6",1,0),
          ward7 = ifelse(state_ward == "Ward 7",1,0),
          ward8 = ifelse(state_ward == "Ward 8",1,0),
-         otherdc = ifelse(state_ward == "DC",1,0)) |>
+         otherdc = ifelse(state_ward == "DC",1,0),
+         othernotdc = ifelse(state_ward == "Other",1,0)) |>
   summarize(round(mean(risk_score),3), 
             paste(100*round(mean(virginia),2),"%", sep = ""), 
             paste(100*round(mean(maryland),2),"%", sep = ""), 
@@ -28,10 +29,12 @@ ate |>
             paste(100*round(mean(ward3),2),"%", sep = ""), 
             paste(100*round(mean(ward4),2),"%", sep = ""), 
             paste(100*round(mean(ward5),2),"%", sep = ""), 
-            paste(round(mean(ward6),2),"%", sep = ""), 
+            paste(100*round(mean(ward6),2),"%", sep = ""), 
             paste(100*round(mean(ward7),2),"%", sep = ""), 
             paste(100*round(mean(ward8),2),"%", sep = ""), 
             paste(100*round(mean(otherdc),2),"%", sep = ""), 
+            paste(100*round(mean(othernotdc),2),"%", sep = "")
+            
   ) |>
   as.data.frame()|>
   write_csv(file = "tables/summary/balance_nomatch.csv")
@@ -62,7 +65,7 @@ ate |>
             paste(100*round(mean(ward3),2),"%", sep = ""), 
             paste(100*round(mean(ward4),2),"%", sep = ""), 
             paste(100*round(mean(ward5),2),"%", sep = ""), 
-            paste(round(mean(ward6),2),"%", sep = ""), 
+            paste(100*round(mean(ward6),2),"%", sep = ""), 
             paste(100*round(mean(ward7),2),"%", sep = ""), 
             paste(100*round(mean(ward8),2),"%", sep = ""), 
             paste(100*round(mean(otherdc),2),"%", sep = ""), 

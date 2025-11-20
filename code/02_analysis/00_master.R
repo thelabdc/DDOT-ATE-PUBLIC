@@ -12,8 +12,8 @@ library(lubridate)
 library(sandwich)
 
 # Data sources for calculating p-values 
-preanalysis_citation_summary_pretreat <- read_csv("data/citation_summary_pretreat.csv")
-preanalysis_crash_data_pretreat <- read_csv("data/crash_data_pretreat.csv")
+preanalysis_citation_summary_pretreat <- read_csv("data/preanalysis_citation_summary_pretreat.csv")
+preanalysis_crash_data_pretreat <- read_csv("data/preanalysis_crash_data_pretreat.csv")
 
 # Data sources for summary statistics and regression analysis
 ate <- read_csv("data/ate.csv")
