@@ -44,23 +44,22 @@ The data contains PII and we do not include these data in the repo. Instead, one
 
 ## Organization
 
-
 - `code`
-  - `[00_master.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R)`  
-  - `01_preanalysis`
-  - `02_analysis`
+  - [00_master](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R)
+  - [01_preanalysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/01_pre-analysis)
+  - [02_analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/02_analysis)
 
 Additionally, this repository includes `README`, `.gitignore`, and `.Rproj` 
 files, and the figures and tables from the paper. 
 
-## `00_master.r`
+## [00_master.r][00_master](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R)
 - What it does:
     - Reads in data files and sets parameters like color for plots 
 
-## `/code/01_pre-analysis`
+## [/code/01_pre-analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/01_pre-analysis)
 
 This directory includes these files:
- `01_simulated-multiple-comparisons-correction-citations.r`
+ [simulated-multiple-comparisons-correction-citations.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/01_pre-analysis/01_simulated-multiple-comparisons-correction-citations.r)
 - Takes in:
     - Summary of pre-treatment citations data for the study sample of drivers
 - What it does:
@@ -68,7 +67,7 @@ This directory includes these files:
 - Outputs:
     - 0.004704705, the simulated alpha with 20,000 simulations  (Calculated 2023-11-17)
  
-   `02_simulated-multiple-comparisons-correction-crash.r`
+   [02_simulated-multiple-comparisons-correction-crash.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/01_pre-analysis/02_simulated-multiple-comparisons-correction-crashes.R)
 - Takes in:
     - Summary of pre-treatment crash data for the study sample of drivers
 - What it does:
@@ -76,10 +75,10 @@ This directory includes these files:
 - Outputs:
     - 0.0171, the simulated alpha with 20,000 simulations  (Calculated 2024-11-04)
 
-## `/code/02_analysis`
+## [/code/02_analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/02_analysis)
 
 This directory includes these files:
- `01_summary_statistics.r`
+ [01_summary_statistics.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/01_summary_statistics.R)
 - Takes in: 
     - ate.csv (experiment data)
     - pretreat_citation (pretreatment data on citation outcome)
@@ -93,7 +92,7 @@ This directory includes these files:
   - tables/summary/balance_match.csv
   - tables/summary/pretreat_outcome_balance_match.csv
   
-`02_analysis_confirmatory.r`
+[02_analysis_confirmatory.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/02_analysis_confirmatory.R)
 - Takes in: 
   - ate.csv
   
@@ -104,7 +103,7 @@ This directory includes these files:
     - Main coefficient plots for the paper's body: figs/confirmatory_mailer.png,  figs/confirmatory_matched.png
     - Main regression tables for the paper's appendix: tables/regression_results/confirmatory_wholesample.doc, tables/regression_results/confirmatory_matched_sample.docx
     
-`03_analysis_exploratory.r`
+[03_analysis_exploratory.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/03_exploratory_12month.R)
 - Takes in: 
     - ate.csv
     
