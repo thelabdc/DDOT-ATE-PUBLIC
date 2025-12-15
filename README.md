@@ -14,7 +14,7 @@ You can find the final report (preprint) [here](https://static1.squarespace.com/
 
 #### Requirements:
 
-All relevant packages are listed at the beginning of the 00_master script. They are reproduced here:
+All relevant packages are listed at the beginning of the [00_master](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R) script. They are reproduced here:
 
 ```
 library(tidyverse)
@@ -46,7 +46,7 @@ The data contains PII and we do not include these data in the repo. Instead, one
 
 
 - `code`
-  - `00_master.r`  
+  - `[00_master.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R)`  
   - `01_preanalysis`
   - `02_analysis`
 
