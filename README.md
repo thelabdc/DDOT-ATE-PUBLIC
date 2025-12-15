@@ -28,6 +28,7 @@ library(texreg)
 library(lubridate)
 library(sandwich)
 library(randomizr)
+```
 
 The data contains PII and we do not include these data in the repo. Instead, one can reproduce using the following directory structure for internal files: 
 - `data`
@@ -39,12 +40,9 @@ The data contains PII and we do not include these data in the repo. Instead, one
   - `ps-from-simulations-20000-sims-citations`: p values generated in 01_simulated-multiple-comparisons-correction-citations.r
   - `ps-from-simulations-20000-sims-crash`: p values generated in 01_simulated-multiple-comparisons-correction-crash.r
 
-
-```
-
 ## Organization
 
-- `code`
+- code
   - [00_master](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R)
   - [01_preanalysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/01_pre-analysis)
   - [02_analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/02_analysis)
@@ -52,67 +50,67 @@ The data contains PII and we do not include these data in the repo. Instead, one
 Additionally, this repository includes `README`, `.gitignore`, and `.Rproj` 
 files, and the figures and tables from the paper. 
 
-## [00_master.r][00_master](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R)
+## [00_master.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R)
 - What it does:
     - Reads in data files and sets parameters like color for plots 
 
-## [/code/01_pre-analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/01_pre-analysis)
+## [01_pre-analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/01_pre-analysis)
 
 This directory includes these files:
- [simulated-multiple-comparisons-correction-citations.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/01_pre-analysis/01_simulated-multiple-comparisons-correction-citations.r)
-- Takes in:
-    - Summary of pre-treatment citations data for the study sample of drivers
-- What it does:
-    - Uses simulation to identify the correct alpha to use as a threshold for significance at the 95% level when correcting for the pre-registered 12-test citation family. 
-- Outputs:
-    - 0.004704705, the simulated alpha with 20,000 simulations  (Calculated 2023-11-17)
- 
-   [02_simulated-multiple-comparisons-correction-crash.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/01_pre-analysis/02_simulated-multiple-comparisons-correction-crashes.R)
-- Takes in:
-    - Summary of pre-treatment crash data for the study sample of drivers
-- What it does:
-    - Uses simulation to identify the correct alpha to use as a threshold for significance at the 95% level when correcting for the pre-registered 12-test citation family. 
-- Outputs:
-    - 0.0171, the simulated alpha with 20,000 simulations  (Calculated 2024-11-04)
+- [simulated-multiple-comparisons-correction-citations.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/01_pre-analysis/01_simulated-multiple-comparisons-correction-citations.r)
+  - Takes in:
+      - Summary of pre-treatment citations data for the study sample of drivers
+  - What it does:
+      - Uses simulation to identify the correct alpha to use as a threshold for significance at the 95% level when correcting for the pre-registered 12-test citation family. 
+  - Outputs:
+      - 0.004704705, the simulated alpha with 20,000 simulations  (Calculated 2023-11-17)
 
-## [/code/02_analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/02_analysis)
+- [02_simulated-multiple-comparisons-correction-crash.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/01_pre-analysis/02_simulated-multiple-comparisons-correction-crashes.R)
+  - Takes in:
+      - Summary of pre-treatment crash data for the study sample of drivers
+  - What it does:
+      - Uses simulation to identify the correct alpha to use as a threshold for significance at the 95% level when correcting for the pre-registered 12-test citation family. 
+  - Outputs:
+      - 0.0171, the simulated alpha with 20,000 simulations  (Calculated 2024-11-04)
+
+## [02_analysis](https://github.com/thelabdc/DDOT-ATE-PUBLIC/tree/main/code/02_analysis)
 
 This directory includes these files:
- [01_summary_statistics.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/01_summary_statistics.R)
-- Takes in: 
-    - ate.csv (experiment data)
-    - pretreat_citation (pretreatment data on citation outcome)
-    - pretreat_crash (pretreatment data on crash outcome)
-    
-- What it does:
-    - Makes summary of covariate balance summary of pre-treatment outcomes for paper.
-
-- Outputs: 
-  - tables/summary/balance_nomatch.csv
-  - tables/summary/balance_match.csv
-  - tables/summary/pretreat_outcome_balance_match.csv
+- [01_summary_statistics.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/01_summary_statistics.R)
+  - Takes in: 
+      - ate.csv (experiment data)
+      - pretreat_citation (pretreatment data on citation outcome)
+      - pretreat_crash (pretreatment data on crash outcome)
+      
+  - What it does:
+      - Makes summary of covariate balance summary of pre-treatment outcomes for paper.
   
-[02_analysis_confirmatory.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/02_analysis_confirmatory.R)
-- Takes in: 
-  - ate.csv
-  
-- What it does:
-    - Runs all confirmatory regressions for the paper.
-
-- Outputs: 
-    - Main coefficient plots for the paper's body: figs/confirmatory_mailer.png,  figs/confirmatory_matched.png
-    - Main regression tables for the paper's appendix: tables/regression_results/confirmatory_wholesample.doc, tables/regression_results/confirmatory_matched_sample.docx
+  - Outputs: 
+    - tables/summary/balance_nomatch.csv
+    - tables/summary/balance_match.csv
+    - tables/summary/pretreat_outcome_balance_match.csv
     
-[03_analysis_exploratory.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/03_exploratory_12month.R)
-- Takes in: 
+- [02_analysis_confirmatory.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/02_analysis_confirmatory.R)
+  - Takes in: 
     - ate.csv
     
-- What it does:
-    - Writes a function to generate output for main regressions on a subset of the data.
-    - Creates tables with this output.
-    - Creates box and whisker plots for the state level heterogenous effects and effects by risk tercile. 
+  - What it does:
+      - Runs all confirmatory regressions for the paper.
+  
+  - Outputs: 
+      - Main coefficient plots for the paper's body: figs/confirmatory_mailer.png,  figs/confirmatory_matched.png
+      - Main regression tables for the paper's appendix: tables/regression_results/confirmatory_wholesample.doc, tables/regression_results/confirmatory_matched_sample.docx
     
-Outputs: 
-    - All tables in tables/het
-    - figs/exploratory_risk_tercile_any.png, figs/exploratory_state_mailer.png, figs/exploratory_state_matched.png, figs/exploratory_state_any.png, figs/exploratory_risk_tercile_mailer.png, figs/exploratory_risk_tercile_match.png, figs/exploratory_risk_tercile_any.png
+- [03_analysis_exploratory.r](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/02_analysis/03_exploratory_12month.R)
+  - Takes in: 
+      - ate.csv
+      
+  - What it does:
+      - Writes a function to generate output for main regressions on a subset of the data.
+      - Creates tables with this output.
+      - Creates box and whisker plots for the state level heterogenous effects and effects by risk tercile. 
+      
+  - Outputs: 
+      - All tables in tables/het
+      - figs/exploratory_risk_tercile_any.png, figs/exploratory_state_mailer.png, figs/exploratory_state_matched.png, figs/exploratory_state_any.png, figs/exploratory_risk_tercile_mailer.png, figs/exploratory_risk_tercile_match.png, figs/exploratory_risk_tercile_any.png
   
