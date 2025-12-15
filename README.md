@@ -28,6 +28,18 @@ library(texreg)
 library(lubridate)
 library(sandwich)
 library(randomizr)
+
+The data contains PII and we do not include these data in the repo. Instead, one can reproduce using the following directory structure for internal files: 
+- `data`
+  - `ate`: aggregated data for the number of risky and total citations for plates in the study, at 3 months and 12 months. 
+  - `preanalysis_citation_summary_pretreat` Summary of pretreatment outcomes for study plates used for pre-analysis/multiple hypothesis calculations
+  - `preanalysis_crash_data_pretreat` Pretreatment crash data from January 2016 - April 2022, used for pre-analysis/multiple hypothesis calculations
+  - `pretreat_citation`: Pre-treatment citations outcomes, used in summary statistics
+  - `pretreat_crash`: Pre-treatment crash outcomes, used in summary statistics
+  - `ps-from-simulations-20000-sims-citations`: p values generated in 01_simulated-multiple-comparisons-correction-citations.r
+  - `ps-from-simulations-20000-sims-crash`: p values generated in 01_simulated-multiple-comparisons-correction-crash.r
+
+
 ```
 
 ## Organization
@@ -39,7 +51,7 @@ library(randomizr)
   - `02_analysis`
 
 Additionally, this repository includes `README`, `.gitignore`, and `.Rproj` 
-files.
+files, and the figures and tables from the paper. 
 
 ## `00_master.r`
 - What it does:
@@ -68,25 +80,40 @@ This directory includes these files:
 
 This directory includes these files:
  `01_summary_statistics.r`
+- Takes in: 
+    - ate.csv (experiment data)
+    - pretreat_citation (pretreatment data on citation outcome)
+    - pretreat_crash (pretreatment data on crash outcome)
+    
 - What it does:
     - Makes summary of covariate balance summary of pre-treatment outcomes for paper.
+
+- Outputs: 
+  - tables/summary/balance_nomatch.csv
+  - tables/summary/balance_match.csv
+  - tables/summary/pretreat_outcome_balance_match.csv
+  
 `02_analysis_confirmatory.r`
+- Takes in: 
+  - ate.csv
+  
 - What it does:
     - Runs all confirmatory regressions for the paper.
-    - Outputs main coefficient plots for the paper's body. 
+
+- Outputs: 
+    - Main coefficient plots for the paper's body: figs/confirmatory_mailer.png,  figs/confirmatory_matched.png
+    - Main regression tables for the paper's appendix: tables/regression_results/confirmatory_wholesample.doc, tables/regression_results/confirmatory_matched_sample.docx
+    
 `03_analysis_exploratory.r`
+- Takes in: 
+    - ate.csv
+    
 - What it does:
     - Writes a function to generate output for main regressions on a subset of the data.
     - Creates tables with this output.
-    - Cretaes box and whisker plots for the state level heterogenous effects and effects by risk tercile. 
+    - Creates box and whisker plots for the state level heterogenous effects and effects by risk tercile. 
+    
+Outputs: 
+    - All tables in tables/het
+    - figs/exploratory_risk_tercile_any.png, figs/exploratory_state_mailer.png, figs/exploratory_state_matched.png, figs/exploratory_state_any.png, figs/exploratory_risk_tercile_mailer.png, figs/exploratory_risk_tercile_match.png, figs/exploratory_risk_tercile_any.png
   
-### Sensitive data
-
-The data folder is not included in this library. Lab staff who have been granted access can find the following, corresponding data in the Box Replication Data Folder. 
-- `ate`: aggregated data for the number of risky and total citations for plates in the study, at 3 months and 12 months. 
-- `preanalysis_citation_summary_pretreat` Summary of pretreatment outcomes for study plates used for pre-analysis/multiple hypothesis calculations
-- `preanalysis_crash_data_pretreat` Pretreatment crash data from January 2016 - April 2022, used for pre-analysis/multiple hypothesis calculations
-- `pretreat_citation`: Pre-treatment citations outcomes, used in summary statistics
-- `pretreat_crash`: Pre-treatment crash outcomes, used in summary statistics
-- `ps-from-simulations-20000-sims-citations`: p values generated in 01_simulated-multiple-comparisons-correction-citations.r
-- `ps-from-simulations-20000-sims-crash`: p values generated in 01_simulated-multiple-comparisons-correction-crash.r
