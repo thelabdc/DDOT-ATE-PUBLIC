@@ -1,0 +1,28 @@
+
+\begin{table}
+\caption{Any Message Results: Low-Risk}
+\begin{center}
+\begin{threeparttable}
+\begin{tabular}{l c c c c c}
+\hline
+ & \multicolumn{2}{c}{Risky Citations} & \multicolumn{2}{c}{All citations} & \multicolumn{1}{c}{Crashes} \\
+\cline{2-3} \cline{4-5} \cline{6-6}
+ & 3 months & 12 months & 3 months & 12 months & 12 months \\
+\hline
+(Intercept) & $0.01^{*}$       & $0.04^{*}$       & $0.34^{*}$        & $1.35^{*}$       & $0.02^{*}$       \\
+            & $ [ 0.01; 0.01]$ & $ [ 0.03; 0.04]$ & $ [ 0.32;  0.36]$ & $ [ 1.30; 1.40]$ & $ [ 0.02; 0.02]$ \\
+Any Message & $0.00$           & $0.00$           & $-0.02^{*}$       & $-0.05$          & $-0.00$          \\
+            & $ [-0.00; 0.00]$ & $ [-0.00; 0.01]$ & $ [-0.05; -0.00]$ & $ [-0.12; 0.02]$ & $ [-0.00; 0.00]$ \\
+\hline
+R$^2$       & $0.00$           & $0.00$           & $0.00$            & $0.01$           & $0.00$           \\
+Num. obs.   & $33643$          & $33643$          & $33643$           & $33643$          & $33643$          \\
+\hline
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\scriptsize{\item Lin Estimator. Car make and interacted coefficients on covariates omitted from display for brevity.
+                             \item Stars and confidence intervals reflect conventional 95\% p-value}
+\end{tablenotes}
+\end{threeparttable}
+\label{table:coefficients}
+\end{center}
+\end{table}

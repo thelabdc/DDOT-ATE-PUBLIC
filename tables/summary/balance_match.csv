@@ -1,0 +1,5 @@
+assignment,"round(mean(risk_score), 3)","paste(100 * round(mean(virginia), 2), ""%"", sep = """")","paste(100 * round(mean(maryland), 2), ""%"", sep = """")","paste(100 * round(mean(dc), 2), ""%"", sep = """")","paste(100 * round(mean(ward1), 2), ""%"", sep = """")","paste(100 * round(mean(ward2), 2), ""%"", sep = """")","paste(100 * round(mean(ward3), 2), ""%"", sep = """")","paste(100 * round(mean(ward4), 2), ""%"", sep = """")","paste(100 * round(mean(ward5), 2), ""%"", sep = """")","paste(round(mean(ward6), 2), ""%"", sep = """")","paste(100 * round(mean(ward7), 2), ""%"", sep = """")","paste(100 * round(mean(ward8), 2), ""%"", sep = """")","paste(100 * round(mean(otherdc), 2), ""%"", sep = """")"
+Control,0.594,10%,46%,38%,3%,2%,5%,8%,5%,0.02%,7%,7%,0%
+Mailer,0.595,10%,46%,38%,3%,2%,5%,8%,5%,0.02%,7%,7%,0%
+Text,0.595,10%,46%,38%,3%,2%,5%,8%,5%,0.02%,7%,7%,0%
+Both,0.594,10%,46%,38%,3%,2%,5%,8%,5%,0.02%,7%,7%,0%

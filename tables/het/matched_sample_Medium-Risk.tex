@@ -1,0 +1,32 @@
+
+\begin{table}
+\caption{Matched Sample Results: Medium-Risk}
+\begin{center}
+\begin{threeparttable}
+\begin{tabular}{l c c c c c}
+\hline
+ & \multicolumn{2}{c}{Risky Citations} & \multicolumn{2}{c}{All citations} & \multicolumn{1}{c}{Crashes} \\
+\cline{2-3} \cline{4-5} \cline{6-6}
+ & 3 months & 12 months & 3 months & 12 months & 12 months \\
+\hline
+Intercept & $0.02^{*}$       & $0.06^{*}$       & $0.59^{*}$        & $2.24^{*}$       & $0.03^{*}$       \\
+          & $ [ 0.01; 0.02]$ & $ [ 0.05; 0.07]$ & $ [ 0.56;  0.62]$ & $ [ 2.14; 2.33]$ & $ [ 0.02; 0.03]$ \\
+Mailer    & $-0.00$          & $0.01$           & $-0.00$           & $0.08$           & $0.00$           \\
+          & $ [-0.01; 0.01]$ & $ [-0.02; 0.03]$ & $ [-0.07;  0.06]$ & $ [-0.15; 0.31]$ & $ [-0.01; 0.01]$ \\
+Text      & $0.00$           & $-0.00$          & $-0.05^{*}$       & $-0.08$          & $-0.00$          \\
+          & $ [-0.00; 0.01]$ & $ [-0.02; 0.01]$ & $ [-0.09; -0.00]$ & $ [-0.23; 0.07]$ & $ [-0.01; 0.00]$ \\
+Both      & $0.00$           & $0.01$           & $-0.02$           & $-0.04$          & $-0.00$          \\
+          & $ [-0.00; 0.01]$ & $ [-0.01; 0.03]$ & $ [-0.07;  0.03]$ & $ [-0.20; 0.13]$ & $ [-0.01; 0.01]$ \\
+\hline
+R$^2$     & $0.00$           & $0.00$           & $0.01$            & $0.01$           & $0.01$           \\
+Num. obs. & $19685$          & $19685$          & $19685$           & $19685$          & $19685$          \\
+\hline
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\scriptsize{\item Lin Estimator. Car make and interacted coefficients on covariates omitted from display for brevity.
+                             \item Stars and confidence intervals reflect conventional 95\% p-value}
+\end{tablenotes}
+\end{threeparttable}
+\label{table:coefficients}
+\end{center}
+\end{table}
