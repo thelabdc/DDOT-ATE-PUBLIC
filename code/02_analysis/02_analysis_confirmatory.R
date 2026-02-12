@@ -21,36 +21,36 @@
 
 # Analysis with Make  (Pre-specified)
 A1 <- lm_lin(formula = riskiest_citations_3mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match+make_cleaned , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates= ~ risk_tercile + state_ward + match+make_cleaned , data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analysis without Make  
 A2 <- lm_lin(formula = riskiest_citations_3mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates= ~ risk_tercile + state_ward + match , data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analysis with make (Pre-specified)
 B1 <- lm_lin(formula = num_citations_3mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match + make_cleaned, data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates= ~ risk_tercile + state_ward + match + make_cleaned, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analysis without Make 
 B2 <- lm_lin(formula = num_citations_3mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates= ~ risk_tercile + state_ward + match, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 
 # Analyses on the matched sample only -----------------------------------------
-matched <- ate |> filter(match ==1)
+matched <- ate |> filter(match == 1)
 # Relevel 
 matched$assignment <- factor(matched$assignment,
                              levels = c("Control", "Mailer",  "Text","Both"))
 # Analysis with Make (pre-specified)
-C1 <- lm_lin(riskiest_citations_3mo ~ assignment, covariates = ~   risk_tercile + state_ward  + make_cleaned, data = matched) 
+C1 <- lm_lin(riskiest_citations_3mo ~ assignment, covariates = ~ risk_tercile + state_ward  + make_cleaned, data = matched) 
 # Analysis without Make 
-C2 <- lm_lin(riskiest_citations_3mo ~ assignment, covariates = ~   risk_tercile + state_ward  , data = matched) 
+C2 <- lm_lin(riskiest_citations_3mo ~ assignment, covariates = ~ risk_tercile + state_ward, data = matched) 
 
 # Analysis with Make (pre-specified)
-D1 <- lm_lin(num_citations_3mo ~ assignment, covariates = ~   risk_tercile + state_ward + make_cleaned, data = matched) 
+D1 <- lm_lin(num_citations_3mo ~ assignment, covariates = ~ risk_tercile + state_ward + make_cleaned, data = matched) 
 
 # Analysis without Make 
-D2 <- lm_lin(num_citations_3mo ~ assignment, covariates = ~   risk_tercile + state_ward , data = matched) 
+D2 <- lm_lin(num_citations_3mo ~ assignment, covariates = ~ risk_tercile + state_ward, data = matched) 
 
 ################################################################################
 # 12 Month Citations -----------------------------------------------------------
@@ -58,32 +58,36 @@ D2 <- lm_lin(num_citations_3mo ~ assignment, covariates = ~   risk_tercile + sta
 # Analyses on the whole sample -------------------------------------------------
 # Analysis with Make  (Pre-specified)
 E1 <- lm_lin(formula = riskiest_citations_12mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match+make_cleaned , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates = ~ risk_tercile + state_ward + match + make_cleaned, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analysis without Make  
 E2 <- lm_lin(formula = riskiest_citations_12mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates = ~ risk_tercile + state_ward + match, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analysis with make (Pre-specified)
 F1 <- lm_lin(formula = num_citations_12mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match + make_cleaned, data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates = ~ risk_tercile + state_ward + match + make_cleaned, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analysis without Make 
 F2 <- lm_lin(formula = num_citations_12mo ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates = ~ risk_tercile + state_ward + match, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analyses on the matched sample -----------------------------------------------
 # Analysis with Make (pre-specified)
-G1 <- lm_lin(riskiest_citations_12mo ~ assignment, covariates = ~   risk_tercile + state_ward  + make_cleaned, data = matched) 
+G1 <- lm_lin(riskiest_citations_12mo ~ assignment, 
+             covariates = ~ risk_tercile + state_ward  + make_cleaned, data = matched) 
 
 # Analysis without Make 
-G2 <- lm_lin(riskiest_citations_12mo ~ assignment, covariates = ~   risk_tercile + state_ward  , data = matched) 
+G2 <- lm_lin(riskiest_citations_12mo ~ assignment, 
+             covariates = ~ risk_tercile + state_ward, data = matched) 
 
 # Analysis with Make (pre-specified)
-H1 <- lm_lin(num_citations_12mo ~ assignment, covariates = ~   risk_tercile + state_ward + make_cleaned, data = matched) 
+H1 <- lm_lin(num_citations_12mo ~ assignment, 
+             covariates = ~ risk_tercile + state_ward + make_cleaned, data = matched) 
 
 # Analysis without Make 
-H2 <- lm_lin(num_citations_12mo ~ assignment, covariates = ~   risk_tercile + state_ward , data = matched) 
+H2 <- lm_lin(num_citations_12mo ~ assignment, 
+             covariates = ~ risk_tercile + state_ward, data = matched) 
 
 
 ################################################################################
@@ -92,18 +96,18 @@ H2 <- lm_lin(num_citations_12mo ~ assignment, covariates = ~   risk_tercile + st
 # Analyses on the whole sample -------------------------------------------------
 # Analysis with Make  (Pre-specified)
 I1 <- lm_lin(formula = n_crashes ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match+make_cleaned , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates = ~ risk_tercile + state_ward + match + make_cleaned, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analysis without Make  
 I2 <- lm_lin(formula = n_crashes ~ mailer, 
-             covariates= ~ risk_tercile + state_ward + match , data = ate[ate$assignment=="Mailer"|ate$assignment == "Control",])
+             covariates = ~ risk_tercile + state_ward + match, data = ate[ate$assignment == "Mailer" | ate$assignment == "Control", ])
 
 # Analyses on the matched sample -----------------------------------------------
 # Analysis with Make (pre-specified)
-J1 <- lm_lin(n_crashes ~ assignment, covariates = ~   risk_tercile + state_ward  + make_cleaned, data = matched) 
+J1 <- lm_lin(n_crashes ~ assignment, covariates = ~ risk_tercile + state_ward + make_cleaned, data = matched) 
 
 # Analysis without Make 
-J2 <- lm_lin(n_crashes ~ assignment, covariates = ~   risk_tercile + state_ward  , data = matched) 
+J2 <- lm_lin(n_crashes ~ assignment, covariates = ~ risk_tercile + state_ward, data = matched) 
 
 
 ################################################################################
@@ -121,21 +125,22 @@ results_tibble <- tibble("model" = c(),
                          "conf.low" = c(), 
                          "conf.high"= c(), 
                          "df" = c(), 
-                         "outcome" = c())              
+                         "outcome" = c()) 
+
 # Adapt formulas to the appropriate subset condition and run regression
 models <- c(A1, B1, C1, D1, E1, F1, G1, H1, I1, J1)
-results_tibble <- bind_rows(tidy(A1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "A1"),
-                            tidy(B1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "B1"),
-                            tidy(C1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "C1"),
-                            tidy(D1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "D1"),
-                            tidy(E1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "E1"),
-                            tidy(F1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "F1"),
-                            tidy(G1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "G1"),
-                            tidy(H1, conf.level = 1- p_val_simulation_citations)|> mutate(model_name = "H1"),
-                            tidy(I1, conf.level = 1- p_val_simulation_crash)|> mutate(model_name = "I1"),
-                            tidy(J1, conf.level = 1- p_val_simulation_crash)|> mutate(model_name = "J1")
+results_tibble <- bind_rows(tidy(A1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "A1"),
+                            tidy(B1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "B1"),
+                            tidy(C1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "C1"),
+                            tidy(D1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "D1"),
+                            tidy(E1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "E1"),
+                            tidy(F1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "F1"),
+                            tidy(G1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "G1"),
+                            tidy(H1, conf.level = 1- p_val_simulation_citations) |> mutate(model_name = "H1"),
+                            tidy(I1, conf.level = 1- p_val_simulation_crash) |> mutate(model_name = "I1"),
+                            tidy(J1, conf.level = 1- p_val_simulation_crash) |> mutate(model_name = "J1")
 ) |>
-  filter(term %in% c("any", "mailer", "assignmentMailer", "assignmentText", "assignmentBoth", "(Intercept)"))|>
+  filter(term %in% c("any", "mailer", "assignmentMailer", "assignmentText", "assignmentBoth", "(Intercept)")) |>
   mutate(outcome = ifelse(outcome == "n_crashes", "n_crashes_12mo", outcome))
 
 write.csv(results_tibble, file = "tables/regression_results/results_all_confirmatory.csv")
@@ -144,41 +149,41 @@ write.csv(results_tibble, file = "tables/regression_results/results_all_confirma
 # Box and Whisker Plots 
 # -----------------------------------------------------------------------------
 # Main coefficient plot for whole sample results 
-mean_risky <- round(mean(ate[ate$assignment == "Control",]$riskiest_citations_12mo),2)
-mean_total <- round(mean(ate[ate$assignment == "Control",]$num_citations_12mo),2)
-mean_crash <- round(mean(ate[ate$assignment == "Control",]$n_crashes),2)
+mean_risky <- round(mean(ate[ate$assignment == "Control", ]$riskiest_citations_12mo), 2)
+mean_total <- round(mean(ate[ate$assignment == "Control", ]$num_citations_12mo), 2)
+mean_crash <- round(mean(ate[ate$assignment == "Control", ]$n_crashes), 2)
 
  (results_tibble |>
   filter(term == "mailer") |>
-  mutate(outcome_name = str_split_fixed(outcome, "(?=\\d)",2)[,1],
-         period = str_split_fixed(outcome, "(?=\\d)",2)[,2]) |>
-     mutate(period = factor(period, levels = c( "3mo", "12mo"), 
-                            labels = c( "3 months","12 months")))|>
-     mutate(term = factor(term, levels = c("mailer"), labels = c("Letter Only")))|>
+  mutate(outcome_name = str_split_fixed(outcome, "(?=\\d)", 2)[, 1],
+         period = str_split_fixed(outcome, "(?=\\d)", 2)[, 2]) |>
+     mutate(period = factor(period, levels = c("3mo", "12mo"), 
+                            labels = c("3 months", "12 months"))) |>
+     mutate(term = factor(term, levels = c("mailer"), labels = c("Letter Only"))) |>
      mutate(outcome_name = factor(outcome_name, 
-                                  levels = c( "n_crashes_","riskiest_citations_", "num_citations_"), 
-                                  labels = c( "Crashes", "Riskiest citations", 
+                                  levels = c("n_crashes_", "riskiest_citations_", "num_citations_"), 
+                                  labels = c("Crashes", "Riskiest citations", 
                                               "Total citations" 
                                   ))
-     )|>
+     ) |>
   ggplot() + 
-  geom_point(aes(x = term, y= estimate, group = outcome_name, color = outcome_name), position=position_dodge(width=0.5)) + 
-  geom_errorbar(aes(x = term, ymin = conf.low, ymax = conf.high, group = outcome_name, color = outcome_name), position=position_dodge(width=0.5), width = .5) + 
-  geom_hline(aes(yintercept = 0), color = cb_red, linetype = "dashed")+
-  coord_flip()+
+  geom_point(aes(x = term, y = estimate, group = outcome_name, color = outcome_name), position = position_dodge(width = 0.5)) + 
+  geom_errorbar(aes(x = term, ymin = conf.low, ymax = conf.high, group = outcome_name, color = outcome_name), position=position_dodge(width = 0.5), width = .5) + 
+  geom_hline(aes(yintercept = 0), color = cb_red, linetype = "dashed") +
+  coord_flip() +
   facet_wrap(~ period, ncol = 2) + 
   labs(#title = "Effect of Letter Intervention in Full Sample",
     x = "", y = "Estimate", color = "Outcome\n(12-month control mean)",
        caption = paste("Coefficient estimates of effect of \"letter only\" intervention in full sample, using Lin Estimator. N = ", nobs(A1), "\n Confidence intervals use p-values corrected for multiple hypothesis testing."), sep = "") + 
   theme_classic() + 
     scale_color_manual(values = c(  cb_red,cb_purple,cb_green))+
-     theme(plot.title =element_text(size = 10),
+     theme(plot.title = element_text(size = 10),
            axis.title = element_text(size = 10),
            axis.text = element_text(size = 10),
            plot.caption = element_text(size = 10),
-           legend.title = element_text(size =10),
+           legend.title = element_text(size = 10),
            legend.text = element_text(size = 10),
-           strip.text = element_text(size = 10))+
+           strip.text = element_text(size = 10)) +
    #theme(
     #   legend.position = c(0.5, 0.885),  # Centered and above the facets
      #  legend.justification = c(0.5, 0.5),
@@ -189,48 +194,47 @@ mean_crash <- round(mean(ate[ate$assignment == "Control",]$n_crashes),2)
      #) 
      theme(legend.position = "bottom")
      
-    )|>
+    ) |>
   ggsave(file = "figs/confirmatory_mailer.png", width= 6.9, height = 4)
 
 # Main coefficient plot for matched sample (By treatment arm) 
-mean_risky_match <- round(mean(ate[ate$assignment == "Control" & ate$match==1,]$riskiest_citations_12mo),2)
-mean_total_match <- round(mean(ate[ate$assignment == "Control"& ate$match==1,]$num_citations_12mo),2)
-mean_crash_match <- round(mean(ate[ate$assignment == "Control"& ate$match==1,]$n_crashes),2)
+mean_risky_match <- round(mean(ate[ate$assignment == "Control" & ate$match==1, ]$riskiest_citations_12mo), 2)
+mean_total_match <- round(mean(ate[ate$assignment == "Control" & ate$match==1, ]$num_citations_12mo), 2)
+mean_crash_match <- round(mean(ate[ate$assignment == "Control" & ate$match==1, ]$n_crashes), 2)
 
 (results_tibble |>
-    filter(str_detect(term, "assignment")==TRUE)  |>
+    filter(str_detect(term, "assignment") == TRUE) |>
     mutate(term = factor(term,
-                         levels = c("assignmentBoth","assignmentText", "assignmentMailer"),
-                         labels = c( "Both", "Text Message","Letter" ))) |>
-    mutate(outcome_name = str_split_fixed(outcome, "(?=\\d)",2)[,1],
-           period = str_split_fixed(outcome, "(?=\\d)",2)[,2]) |>
-    mutate(period = factor(period, levels = c( "3mo","12mo"), 
-                           labels = c( "3 months","12 months")))|>
+                         levels = c("assignmentBoth", "assignmentText", "assignmentMailer"),
+                         labels = c( "Both", "Text Message", "Letter"))) |>
+    mutate(outcome_name = str_split_fixed(outcome, "(?=\\d)", 2)[, 1],
+           period = str_split_fixed(outcome, "(?=\\d)", 2)[, 2]) |>
+    mutate(period = factor(period, levels = c("3mo", "12mo"), 
+                           labels = c("3 months", "12 months"))) |>
 
     mutate(outcome_name = factor(outcome_name, 
-                                 levels = c( "n_crashes_","riskiest_citations_", "num_citations_"), 
-                                 labels = c( "Crashes", "Riskiest citations", 
+                                 levels = c("n_crashes_", "riskiest_citations_", "num_citations_"), 
+                                 labels = c("Crashes", "Riskiest citations", 
                                              "Total citations" 
                                  ))
-    )|>
+    ) |>
   ggplot() + 
-  geom_point(aes(x = term, y= estimate, group = outcome_name, color = outcome_name), position=position_dodge(width=0.5)) + 
-  geom_errorbar(aes(x = term, ymin = conf.low, ymax = conf.high, group = outcome_name, color = outcome_name),  position=position_dodge(width=0.5), width = .5)+
+  geom_point(aes(x = term, y = estimate, group = outcome_name, color = outcome_name), position = position_dodge(width = 0.5)) + 
+  geom_errorbar(aes(x = term, ymin = conf.low, ymax = conf.high, group = outcome_name, color = outcome_name),  position = position_dodge(width = 0.5), width = .5) +
   facet_wrap(~ period, ncol = 3) +
-  coord_flip()+
-  geom_hline(aes(yintercept = 0), color = cb_red, linetype = "dashed")+
+  coord_flip() +
+  geom_hline(aes(yintercept = 0), color = cb_red, linetype = "dashed") +
   labs(#title = "Effect of Different Messaging Modes Among Drivers with Publicly-Available Phone Numbers",
        x = "", y = "Estimate", 
        color = "Outcome\n(12-month control mean)",
        caption = paste("Coefficient estimates of effects in phone-matched sample, using Lin Estimator. N = ", nobs(C1), "\n Confidence intervals use p-values corrected for multiple hypothesis testing."), sep = "") + 
-  theme_classic()  + 
     theme_classic() + 
-    scale_color_manual(values = c(  cb_red,cb_purple,cb_green))+
+    scale_color_manual(values = c(cb_red,cb_purple,cb_green))+
     theme(plot.title =element_text(size = 10),
           axis.title = element_text(size = 10),
           axis.text = element_text(size = 10),
           plot.caption = element_text(size = 10),
-          legend.title = element_text(size =10),
+          legend.title = element_text(size = 10),
           legend.text = element_text(size = 10))+
    # theme(
     #  legend.position = c(0.5, 0.95),  # Centered and above the facets
@@ -241,7 +245,7 @@ mean_crash_match <- round(mean(ate[ate$assignment == "Control"& ate$match==1,]$n
       #legend.box.margin = margin(t = -10)  # Adjust this to control spacing
     #) 
     theme(legend.position = "bottom")
-)|>
+) |>
   ggsave(file = "figs/confirmatory_matched.png", width= 6.9, height = 8)
 
 # -----------------------------------------------------------------------------
@@ -249,21 +253,21 @@ mean_crash_match <- round(mean(ate[ate$assignment == "Control"& ate$match==1,]$n
 # -----------------------------------------------------------------------------
 
 # Whole sample results (just mailer)
-extracted_A1 <- texreg::extract(A1,  include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_B1 <- texreg::extract(B1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_C1 <- texreg::extract(C1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_D1 <- texreg::extract(D1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_E1 <- texreg::extract(E1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_F1 <- texreg::extract(F1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_G1 <- texreg::extract(G1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_H1 <- texreg::extract(H1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_I1 <- texreg::extract(I1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
-extracted_J1 <- texreg::extract(J1,include.ci=FALSE, include.adjrs = FALSE, include.rmse=FALSE, include.fstatistic = FALSE)
+extracted_A1 <- texreg::extract(A1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_B1 <- texreg::extract(B1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_C1 <- texreg::extract(C1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_D1 <- texreg::extract(D1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_E1 <- texreg::extract(E1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_F1 <- texreg::extract(F1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_G1 <- texreg::extract(G1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_H1 <- texreg::extract(H1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_I1 <- texreg::extract(I1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
+extracted_J1 <- texreg::extract(J1, include.ci = FALSE, include.adjrs = FALSE, include.rmse = FALSE, include.fstatistic = FALSE)
 
-output <- wordreg(c(extracted_A1,   extracted_E1, extracted_B1, extracted_F1, extracted_I1),
+output <- wordreg(c(extracted_A1, extracted_E1, extracted_B1, extracted_F1, extracted_I1),
                  caption = "Whole Sample Results: (Mailer vs. No Message)",
                  stars = c(p_val_simulation_crash,p_val_simulation_citations),
-                 custom.model.names = c("3 months","12 months",  "3 months", "12 months", "12 months"),
+                 custom.model.names = c("3 months", "12 months", "3 months", "12 months", "12 months"),
                  #custom.header  = list("Risky Citations" = 1:2, "All citations" = 3:4, "Crashes" = 5),
                  digits = 4,
                  use.packages = FALSE,
@@ -284,7 +288,7 @@ output <- wordreg(c(extracted_A1,   extracted_E1, extracted_B1, extracted_F1, ex
                                         "state_wardOther_c" = "Other",
                                         "match" = "Phone Match Sample",
                                         "(Intercept)" = "Constant"),
-                 groups = list("Risk Tercile" = 2:3,"State or Ward" = 4:14),
+                 groups = list("Risk Tercile" = 2:3, "State or Ward" = 4:14),
                  custom.note = c("\\item Lin Estimator. Car make and interacted coefficients on covariates omitted from display for brevity.
                              \\item Stars: * < .017 (Simulated crash p-value) ** < .004 (Simulated citation p-value) "),
                  caption.above = TRUE, 
@@ -295,19 +299,19 @@ output <- wordreg(c(extracted_A1,   extracted_E1, extracted_B1, extracted_F1, ex
 
 
 # Matched sample 
-output_matched <- wordreg(c(extracted_C1,  extracted_G1, extracted_D1, extracted_H1, extracted_J1),
-                 omit.coef =  c(":|make"),
+output_matched <- wordreg(c(extracted_C1, extracted_G1, extracted_D1, extracted_H1, extracted_J1),
+                 omit.coef = c(":|make"),
                  threeparttable = TRUE,
                  use.packages = FALSE,
                  caption = "Matched Sample Results",
                  digits = 4,
-                 stars = c(p_val_simulation_crash,p_val_simulation_citations),
-                 custom.model.names = c("3 months","12 months",  "3 months", "12 months", "12 months"),
+                 stars = c(p_val_simulation_crash, p_val_simulation_citations),
+                 custom.model.names = c("3 months", "12 months", "3 months", "12 months", "12 months"),
                  #custom.header  = list("Risky Citations" = 1:2, "All citations" = 3:4, "Crashes" = 5),
                  groups = list("Treatment" = 1:3, 
-                             "Risk Tercile" = 4:5,
+                               "Risk Tercile" = 4:5,
                                "State or Ward" = 6:16),
-                    caption.above = TRUE,
+                 caption.above = TRUE,
                  custom.coef.map = list("assignmentMailer" = "Letter only", 
                                         "assignmentText" = "Text message only",
                                         "assignmentBoth" = "Both",

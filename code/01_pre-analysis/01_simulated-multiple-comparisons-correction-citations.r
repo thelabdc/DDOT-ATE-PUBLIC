@@ -1,8 +1,8 @@
+library(broom)
 library(estimatr)
+library(here)
 library(randomizr)
 library(tidyverse)
-library(broom)
-library(here)
 
 ########################################################################################################################################
 # This code 
@@ -62,7 +62,7 @@ cor(citation_summary_pretreat[,outcomes])
     set.seed(23111712)
     # ps_from_sims <- replicate(simulate_significance(simdata = citation_summary_pretreat),n=nsim)
     # do not overwrite this unless you have the time/bandwidth to run with 10,000 simulations
-     file_name <- paste("data/ps-from-simulations-", nsim, "-sims.csv", sep = "")
+    file_name <- paste("data/ps-from-simulations-", nsim, "-sims.csv", sep = "")
     # write_csv(as.data.frame(ps_from_sims), here(file_name))
     ps_from_sims <- read_csv(here(file_name))
     
@@ -90,5 +90,5 @@ cor(citation_summary_pretreat[,outcomes])
       select(threshold)
 
    target_p_value  
-    # 0.004704705
+   # 0.004704705
     

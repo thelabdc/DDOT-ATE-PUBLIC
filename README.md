@@ -17,17 +17,18 @@ You can find the final report (preprint) [here](https://static1.squarespace.com/
 All relevant packages are listed at the beginning of the [00_master](https://github.com/thelabdc/DDOT-ATE-PUBLIC/blob/main/code/00_master.R) script. They are reproduced here:
 
 ```
-library(tidyverse)
 library(broom)
+library(boxr)
 library(estimatr)
 library(here)
 library(janitor)
+library(lubridate)
 library(MASS)
+library(randomizr)
+library(sandwich)
 library(stargazer)
 library(texreg)
-library(lubridate)
-library(sandwich)
-library(randomizr)
+library(tidyverse)
 ```
 
 The data contains PII and we do not include these data in the repo. Instead, one can reproduce using the following directory structure for internal files: 
